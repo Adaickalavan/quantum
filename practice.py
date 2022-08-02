@@ -17,3 +17,15 @@ qc = QuantumCircuit(3, 3)
 qc.x([0,1])  # Perform X-gates on qubits 0 & 1
 qc.measure([0,1,2], [0,1,2])
 qc.draw()    # returns a drawing of the circuit
+
+
+from qiskit import QuantumCircuit
+from qiskit.quantum_info import Statevector
+
+# Let's create a fresh quantum circuit
+qc = QuantumCircuit(2)
+
+qc.h(1)
+
+ket = Statevector(qc)
+ket.draw()
