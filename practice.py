@@ -25,7 +25,112 @@ from qiskit.quantum_info import Statevector
 # Let's create a fresh quantum circuit
 qc = QuantumCircuit(2)
 
-qc.h(1)
 
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.h(1)
+qc.cx(1,0)
+qc.z(0)
+qc.barrier
+qc.draw()
 ket = Statevector(qc)
 ket.draw()
+qc.cx(1,0)
+qc.draw()
+ket = Statevector(qc)
+ket.draw()
+
+
+
+MESSAGE = '00'
+
+qc_alice = QuantumCircuit(2,2)
+
+# Alice encodes the message
+if MESSAGE[-1]=='1':
+    qc_alice.x(0)
+if MESSAGE[-2]=='1':
+    qc_alice.x(1)
+
+# then she creates entangled states
+qc_alice.h(1)
+ket = Statevector(qc_alice)
+ket.draw()
+qc_alice.cx(1,0)
+qc_alice.draw()
+ket = Statevector(qc_alice)
+ket.draw()
+
+qc_bob = QuantumCircuit(2,2)
+# Bob disentangles
+d = qc_bob.compose(qc_alice)
+d.cx(1,0)
+d.h(1)
+# Then measures
+d.measure([0,1],[0,1])
+d.draw()
+sim.run(d).result().get_counts()
+
+
+MESSAGE = '00'
+
+qc_alice = QuantumCircuit(2,2)
+qc_alice.h(1)
+qc_alice.cx(1,0)
+
+if MESSAGE[-2]=='1':
+    qc_alice.z(1)
+if MESSAGE[-1]=='1':
+    qc_alice.x(1)
+
+ket = Statevector(qc_alice)
+ket.draw()
+qc_alice.draw()
+qc_bob = QuantumCircuit(2,2)
+# Bob disentangles
+qc_bob.cx(1,0)
+qc_bob.h(1)
+# Then measures
+qc_bob.measure([0,1],[0,1])
+qc_bob.draw()
+d = qc_alice.compose(qc_bob)
+d.draw()
+sim.run(d).result().get_counts()
+
+from qiskit import QuantumCircuit
+from qiskit.quantum_info import Statevector
+from qiskit.providers.aer import AerSimulator
+sim = AerSimulator()  # make new simulator object
+meas_x = QuantumCircuit(1,1)
+meas_x.h(0)
+# meas_x.measure(0,0)
+meas_x.draw()
+meas_z = QuantumCircuit(1,1)
+# meas_z.measure(0,0)
+meas_z.draw()
+qc = QuantumCircuit(1,1)
+qc.x(0)
+for basis,circ in [('z', meas_z), ('x', meas_x)]:
+    print('Results from ' + basis + ' measurement:',
+        sim.run(qc.compose(circ)).result().get_counts())
+qc = QuantumCircuit(1,1)
+qc.x(0)
+qc.h(0)
+ket = Statevector(qc)
+ket.draw()
+qcc = qc.compose(meas_x)
+qcc.draw()
+ket = Statevector(qcc)
+ket.draw()
+
+
+from math import pi
+qc = QuantumCircuit(1, 1)
+qc.ry(-pi, 0)
+qc.draw()
+ket = Statevector(qc)
+ket.draw()
+
+
+from qiskit_textbook.widgets import bloch_calc
+bloch_calc()
