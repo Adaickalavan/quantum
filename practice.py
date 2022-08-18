@@ -99,8 +99,8 @@ sim.run(d).result().get_counts()
 
 from qiskit import QuantumCircuit
 from qiskit.quantum_info import Statevector
-from qiskit.providers.aer import AerSimulator
-sim = AerSimulator()  # make new simulator object
+from qiskit import Aer
+backend = Aer.get_backend('aer_simulator')
 meas_x = QuantumCircuit(1,1)
 meas_x.h(0)
 # meas_x.measure(0,0)
@@ -112,7 +112,7 @@ qc = QuantumCircuit(1,1)
 qc.x(0)
 for basis,circ in [('z', meas_z), ('x', meas_x)]:
     print('Results from ' + basis + ' measurement:',
-        sim.run(qc.compose(circ)).result().get_counts())
+        backend.run(qc.compose(circ)).result().get_counts())
 qc = QuantumCircuit(1,1)
 qc.x(0)
 qc.h(0)
@@ -126,11 +126,28 @@ ket.draw()
 
 from math import pi
 qc = QuantumCircuit(1, 1)
-qc.ry(-pi, 0)
+qc.ry(2*pi, 0)
 qc.draw()
 ket = Statevector(qc)
 ket.draw()
 
 
-from qiskit_textbook.widgets import bloch_calc
-bloch_calc()
+qc_charlie = QuantumCircuit(2,2)
+qc_charlie.ry(1.911,1)
+qc_charlie.cx(1,0)
+qc_charlie.ry(0.785,0)
+qc_charlie.cx(1,0)
+qc_charlie.ry(2.356,0)
+
+qc_charlie.draw()
+
+meas_zz = QuantumCircuit(2,2)
+meas_zz.measure([0,1],[0,1])
+meas_zz.draw()
+
+from qiskit.visualization import plot_histogram
+
+print('Results for z measurements:')
+counts = backend.run(qc_charlie.compose(meas_zz)).result().get_counts()
+plot_histogram(counts)
+
