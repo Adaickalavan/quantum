@@ -1,4 +1,5 @@
 from qiskit import QuantumCircuit
+
 qc = QuantumCircuit(3, 3)
 # measure qubits 0, 1 & 2 to classical bits 0, 1 & 2 respectively
 qc.measure([0,1,2], [0,1,2])
@@ -6,6 +7,7 @@ qc.draw()
 
 
 from qiskit.providers.aer import AerSimulator
+
 sim = AerSimulator()  # make new simulator object
 
 job = sim.run(qc)      # run the experiment
@@ -97,9 +99,9 @@ d = qc_alice.compose(qc_bob)
 d.draw()
 sim.run(d).result().get_counts()
 
-from qiskit import QuantumCircuit
+from qiskit import Aer, QuantumCircuit
 from qiskit.quantum_info import Statevector
-from qiskit import Aer
+
 backend = Aer.get_backend('aer_simulator')
 meas_x = QuantumCircuit(1,1)
 meas_x.h(0)
@@ -125,6 +127,7 @@ ket.draw()
 
 
 from math import pi
+
 qc = QuantumCircuit(1, 1)
 qc.ry(2*pi, 0)
 qc.draw()
@@ -141,6 +144,10 @@ qc_charlie.ry(2.356,0)
 
 qc_charlie.draw()
 
+
+ket = Statevector(qc_charlie)
+ket.draw()
+
 meas_zz = QuantumCircuit(2,2)
 meas_zz.measure([0,1],[0,1])
 meas_zz.draw()
@@ -151,3 +158,13 @@ print('Results for z measurements:')
 counts = backend.run(qc_charlie.compose(meas_zz)).result().get_counts()
 plot_histogram(counts)
 
+from qiskit_textbook.games.hello_quantum import run_game
+
+puzzle = run_game(0)
+
+
+qc = QuantumCircuit(1,1)
+qc.h(0)
+qc.draw()
+ket = Statevector(qc)
+ket.draw()
