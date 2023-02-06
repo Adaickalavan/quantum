@@ -168,3 +168,135 @@ qc.h(0)
 qc.draw()
 ket = Statevector(qc)
 ket.draw()
+
+
+
+
+from qiskit import QuantumCircuit
+from qiskit.quantum_info import Statevector
+from qiskit import QuantumCircuit, assemble, Aer
+from math import pi, sqrt
+from qiskit.visualization import plot_bloch_multivector, plot_histogram
+sim = Aer.get_backend('aer_simulator')
+
+def x_measurement(qc, qubit, cbit):
+    """Measure 'qubit' in the X-basis, and store the result in 'cbit'"""
+    qc.h(qubit)
+    qc.measure(qubit, cbit)
+    return qc
+
+initial_state = [1/sqrt(2), -1/sqrt(2)]
+# Initialize our qubit and measure it
+qc = QuantumCircuit(1,1)
+qc.initialize(initial_state, 0)
+x_measurement(qc, 0, 0)  # measure qubit 0 to classical bit 0
+qc.draw()
+
+qobj = assemble(qc)  # Assemble circuit into a Qobj that can be run
+counts = sim.run(qobj).result().get_counts()  # Do the simulation, returning the state vector
+plot_histogram(counts)  # Display the output on measurement of state vector
+
+
+from qiskit import QuantumCircuit, Aer, assemble
+import numpy as np
+from qiskit.visualization import plot_histogram, plot_bloch_multivector
+
+qc = QuantumCircuit(3)
+# Apply H-gate to each qubit:
+for qubit in range(3):
+    qc.h(qubit)
+# See the circuit:
+qc.draw()
+
+svsim = Aer.get_backend('aer_simulator')
+qc.save_statevector()
+qobj = assemble(qc)
+final_state = svsim.run(qobj).result().get_statevector()
+
+# In Jupyter Notebooks we can display this nicely using Latex.
+# If not using Jupyter Notebooks you may need to remove the 
+# array_to_latex function and use print(final_state) instead.
+from qiskit.visualization import array_to_latex
+array_to_latex(final_state, prefix="\\text{Statevector} = ")
+
+
+
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.h(1)
+
+# Apply H-gate to the first:
+qc.h(0)
+# Apply a CNOT:
+qc.cx(0,1)
+qc.draw()
+
+# Apply H-gate to the first:
+qc.h(0)
+# Apply a CNOT:
+qc.cx(0,1)
+qc.draw()
+
+ket = Statevector(qc)
+ket.draw()
+
+
+
+
+
+# Do the necessary imports
+import numpy as np
+from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit import IBMQ, Aer, transpile
+from qiskit.visualization import plot_histogram, plot_bloch_multivector, array_to_latex
+from qiskit.extensions import Initialize
+from qiskit.result import marginal_counts
+from qiskit.quantum_info import random_statevector
+
+def new_bob_gates(qc, a, b, c):
+    qc.cx(b, c)
+    qc.cz(a, c)
+
+def measure_and_send(qc, a, b):
+    """Measures qubits a & b and 'sends' the results to Bob"""
+    qc.barrier()
+    first = qc.measure(a,0)
+    second = qc.measure(b,1)
+    print(f"first={first}, second={second}")
+
+def alice_gates(qc, psi, a):
+    qc.cx(psi, a)
+    qc.h(psi)
+
+def create_bell_pair(qc, a, b):
+    """Creates a bell pair in qc using qubits a & b"""
+    qc.h(a) # Put qubit a into state |+>
+    qc.cx(a,b) # CNOT with a as control and b as target
+
+qc = QuantumCircuit(3,1)
+
+# First, let's initialize Alice's q0
+
+qc.x(0)
+qc.barrier()
+
+# Now begins the teleportation protocol
+create_bell_pair(qc, 1, 2)
+qc.barrier()
+# Send q1 to Alice and q2 to Bob
+alice_gates(qc, 0, 1)
+qc.barrier()
+# Alice sends classical bits to Bob
+new_bob_gates(qc, 0, 1, 2)
+
+# We undo the initialization process
+
+# See the results, we only care about the state of qubit 2
+# qc.measure(2,0)
+
+# View the results:
+qc.draw()
+
+ket = Statevector(qc)
+ket.draw()
+display(array_to_latex(ket, prefix="|\\psi\\rangle ="))
