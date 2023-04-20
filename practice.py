@@ -300,3 +300,93 @@ qc.draw()
 ket = Statevector(qc)
 ket.draw()
 display(array_to_latex(ket, prefix="|\\psi\\rangle ="))
+
+
+from qiskit.circuit.library import PhaseOracle
+oracle = PhaseOracle.from_dimacs_file('3sat.dimacs')
+oracle.draw()
+
+from qiskit import QuantumCircuit
+init = QuantumCircuit(3)
+init.h([0,1,2])
+init.draw()
+
+from qiskit.circuit.library import GroverOperator
+grover_operator = GroverOperator(oracle)
+
+qc = init.compose(grover_operator)
+qc.measure_all()
+
+qc.draw()
+
+# Simulate the circuit
+from qiskit import Aer, transpile
+sim = Aer.get_backend('aer_simulator')
+t_qc = transpile(qc, sim)
+counts = sim.run(t_qc).result().get_counts()
+
+# plot the results
+from qiskit.visualization import plot_histogram
+plot_histogram(counts)
+
+
+from qiskit import QuantumCircuit
+
+oracle = QuantumCircuit(2)
+oracle.cz(0,1)  # invert phase of |11>
+oracle.draw()
+
+
+def display_unitary(qc, prefix=""):
+    """Simulates a simple circuit and display its matrix representation.
+    Args:
+        qc (QuantumCircuit): The circuit to compile to a unitary matrix
+        prefix (str): Optional LaTeX to be displayed before the matrix
+    Returns:
+        None (displays matrix as side effect)
+    """
+    from qiskit import Aer
+    from qiskit.visualization import array_to_latex
+    sim = Aer.get_backend('aer_simulator')
+    # Next, we'll create a copy of the circuit and work on
+    # that so we don't change anything as a side effect
+    qc = qc.copy()
+    # Tell the simulator to save the unitary matrix of this circuit
+    qc.save_unitary()
+    unitary = sim.run(qc).result().get_unitary()
+    display(array_to_latex(unitary, prefix=prefix))
+
+display_unitary(oracle, "U_\\text{oracle}=")
+
+diffuser = QuantumCircuit(2)
+diffuser.h([0, 1])
+diffuser.x([0,1])
+# diffuser.draw()
+
+ket = Statevector(diffuser)
+display(array_to_latex(ket, prefix="\\psi ="))
+
+diffuser.cz(0,1)
+diffuser.x([0,1])
+diffuser.h([0,1])
+diffuser.draw()
+
+ket = Statevector(diffuser)
+display(array_to_latex(ket, prefix="\\psi ="))
+
+grover = QuantumCircuit(2)
+grover.h([0,1])  # initialise |s>
+grover = grover.compose(oracle)
+ket = Statevector(grover)
+display(array_to_latex(ket, prefix="\\psi ="))
+
+grover.h([0,1])
+grover.draw()
+ket = Statevector(grover)
+display(array_to_latex(ket, prefix="\\psi ="))
+
+grover = grover.compose(diffuser)
+ket = Statevector(grover)
+display(array_to_latex(ket, prefix="\\psi ="))
+grover.measure_all()
+grover.draw()
