@@ -393,9 +393,10 @@ grover.draw()
 
 
 
-from qiskit.visualization import array_to_latex
+from qiskit.visualization import array_to_latex, plot_bloch_vector, plot_bloch_multivector
 from qiskit import QuantumCircuit
 from qiskit.quantum_info import Statevector
+import numpy as np
 
 qc = QuantumCircuit(1)
 qc.rz(3.141,0)
@@ -406,14 +407,11 @@ array_to_latex(ket, prefix="\\text{Statevector} = ")
 
 qc = QuantumCircuit(1)
 qc.h(0)
-qc.x(0)
+qc.rz(3.141/2,0)
 qc.h(0)
 qc.draw()
 ket = Statevector(qc)
 ket.draw()
 array_to_latex(ket, prefix="\\text{Statevector} = ")
 
-
-#Import cmath Library
-import numpy 
-print(numpy.angle([0.0007963267 -0.9999996829j], deg=True)) 
+plot_bloch_multivector(ket)
