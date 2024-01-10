@@ -390,3 +390,30 @@ ket = Statevector(grover)
 display(array_to_latex(ket, prefix="\\psi ="))
 grover.measure_all()
 grover.draw()
+
+
+
+from qiskit.visualization import array_to_latex
+from qiskit import QuantumCircuit
+from qiskit.quantum_info import Statevector
+
+qc = QuantumCircuit(1)
+qc.rz(3.141,0)
+qc.draw()
+ket = Statevector(qc)
+ket.draw()
+array_to_latex(ket, prefix="\\text{Statevector} = ")
+
+qc = QuantumCircuit(1)
+qc.h(0)
+qc.x(0)
+qc.h(0)
+qc.draw()
+ket = Statevector(qc)
+ket.draw()
+array_to_latex(ket, prefix="\\text{Statevector} = ")
+
+
+#Import cmath Library
+import numpy 
+print(numpy.angle([0.0007963267 -0.9999996829j], deg=True)) 
