@@ -17,11 +17,11 @@ backend = BasicAer.get_backend('statevector_simulator')
 job = execute(qc, backend)
 result = job.result()
 
+# Draw circuit
+print(qc.draw())
+
 counts = result.get_counts(qc)
 print('counts:',counts)
-
-# Draw circuit
-qc.draw()
 
 # Display statevector
 ket = result.get_statevector(qc, decimals=3)
