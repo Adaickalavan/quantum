@@ -22,7 +22,7 @@ plot_bloch_multivector(ket)
 
 
 ## Quantum Spy Hunter
-# Set up the program
+# Set up
 alice = QuantumRegister(1, name='alice')
 fiber = QuantumRegister(1, name='fiber')
 bob   = QuantumRegister(1, name='bob')

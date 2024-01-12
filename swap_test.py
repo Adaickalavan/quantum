@@ -1,7 +1,6 @@
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, execute, BasicAer
 from qiskit.visualization import array_to_latex
 
-# Set up the program
 input1 = QuantumRegister(1, name='input1')
 input2 = QuantumRegister(1, name='input2')
 output = QuantumRegister(1, name='output')
