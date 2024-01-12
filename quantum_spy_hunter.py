@@ -1,10 +1,6 @@
 from qiskit.visualization import array_to_latex, plot_bloch_multivector
-from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, execute, Aer, IBMQ, BasicAer
+from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, execute, BasicAer
 from qiskit.quantum_info import Statevector
-import numpy as np
-
-# To see diagrams when running in a notebook
-%matplotlib inline
 
 qc = QuantumCircuit(1)
 qc.rz(3.141,0)
@@ -98,9 +94,6 @@ for key,val in counts.items():
 if not caught:
     print('No spies detected.')
 
-# outputstate = result.get_statevector(qc, decimals=3)
-# ket = Statevector(qc)
-# ket.draw()
-# array_to_latex(ket, prefix="\\text{Statevector} = ")
-# print(outputstate)
+outputstate = result.get_statevector(qc, decimals=3)
+print(outputstate)
 qc.draw()        # draw the circuit
