@@ -1,14 +1,14 @@
-from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, execute, BasicAer
 import math
+from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, execute, BasicAer
 from qiskit.visualization import array_to_latex
 from IPython.display import display
 
 alice = QuantumRegister(1, name="alice")
-ep = QuantumRegister(1, name="ep")
+ep = QuantumRegister(1, name="entangled_pair")
 bob = QuantumRegister(1, name="bob")
-alice_c = ClassicalRegister(1, name="alicec")
-ep_c = ClassicalRegister(1, name="epc")
-bob_c = ClassicalRegister(1, name="bobc")
+alice_c = ClassicalRegister(1, name="alice_c")
+ep_c = ClassicalRegister(1, name="entangled_pair_c")
+bob_c = ClassicalRegister(1, name="bob_c")
 qc = QuantumCircuit(alice, ep, bob, alice_c, ep_c, bob_c)
 
 # Entangle
