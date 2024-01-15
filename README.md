@@ -18,9 +18,18 @@ Users are recommended to run each of this repository's code files inside the int
 
 Alternatively, you may run the code inside JupyterLab. Follow the additional steps below to install and launch JupyterLab.
 ```bash
+cd <path>/quantum
 pip install jupyterlab
 # Once installed, launch JupyterLab with:
 jupyter lab
+```
+
+Optional libraries for code formatting.
+```bash
+cd <path>/quantum
+pip install black[jupyter]
+# Execute to format code.
+black .
 ```
 
 ## Code
@@ -31,4 +40,8 @@ jupyter lab
 
     Compare the states of two single-qubit registers. If the two input states are equal, the output register results in `∣1⟩` state. An useful interpretation is to see that the probability of a `|1⟩` outcome is a measure of just how identical the two inputs are.
 
-1.  
+1. [Teleport](teleport.py) 
+
+    ![](docs/_static/teleport.png)
+
+    Teleport the quantum state of a qubit.

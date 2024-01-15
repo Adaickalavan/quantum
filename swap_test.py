@@ -1,10 +1,10 @@
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, execute, BasicAer
 from qiskit.visualization import array_to_latex
 
-input1 = QuantumRegister(1, name='input1')
-input2 = QuantumRegister(1, name='input2')
-output = QuantumRegister(1, name='output')
-output_c = ClassicalRegister(1, name='outputc')
+input1 = QuantumRegister(1, name="input1")
+input2 = QuantumRegister(1, name="input2")
+output = QuantumRegister(1, name="output")
+output_c = ClassicalRegister(1, name="outputc")
 qc = QuantumCircuit(input1, input2, output, output_c)
 
 qc.h(output)
@@ -13,7 +13,7 @@ qc.h(output)
 qc.x(output)
 qc.measure(output, output_c)
 
-backend = BasicAer.get_backend('statevector_simulator')
+backend = BasicAer.get_backend("statevector_simulator")
 job = execute(qc, backend)
 result = job.result()
 
@@ -21,7 +21,7 @@ result = job.result()
 print(qc.draw())
 
 counts = result.get_counts(qc)
-print('counts:',counts)
+print("counts:", counts)
 
 # Display statevector
 ket = result.get_statevector(qc, decimals=3)
