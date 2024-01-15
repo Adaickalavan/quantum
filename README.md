@@ -8,6 +8,7 @@ First perform generic setup as follows.
 cd <path>/quantum
 python3.8 -m venv ./.venv
 source ./.venv/bin/activate
+pip install --upgrade pip
 pip install qiskit[visualization]
 pip install qiskit-ibm-runtime
 pip install matplotlib pylatexenc ipykernel
