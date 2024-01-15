@@ -33,6 +33,7 @@ qc.barrier()
 # Receive
 qc.x(bob).c_if(ep_c, 1)
 qc.z(bob).c_if(alice_c, 1)
+qc.barrier()
 
 # Verify
 qc.h(bob)
@@ -59,5 +60,5 @@ qc.draw(
     cregbundle=False,
     initial_state=True,
     fold=-1,
-    filename="teleportation.png",
+    filename="teleport.png",
 )
