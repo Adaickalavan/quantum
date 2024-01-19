@@ -2,7 +2,7 @@ from qiskit import QuantumCircuit, QuantumRegister, execute, BasicAer
 from qiskit.visualization import array_to_latex
 from IPython.display import display
 from qiskit.circuit.library import MCMT
-from util import get_partial_statevector
+from util.statevector import get_partial_statevector
 
 # Set up
 a = QuantumRegister(2, name="a")
