@@ -20,7 +20,7 @@ qc.x(b[1])
 qc.barrier()
 
 # Verify statevector
-print("After initialization")
+print("Statevector after initialization")
 get_partial_statevector(qc, [1, 2, 3, 4], "scratch")
 get_partial_statevector(qc, [0, 3, 4], "a")
 get_partial_statevector(qc, [0, 1, 2], "b")
@@ -36,7 +36,7 @@ qc.cx(scratch, a[0])
 qc.barrier()
 
 # Verify statevector
-print("After abs(a)")
+print("Statevector after abs(a)")
 get_partial_statevector(qc, [1, 2, 3, 4], "scratch")
 get_partial_statevector(qc, [0, 3, 4], "a")
 get_partial_statevector(qc, [0, 1, 2], "b")
@@ -48,7 +48,7 @@ qc.cx(a[1], b[1])
 qc.barrier()
 
 # Verify statevector
-print("After b += abs(a)")
+print("Statevector after b += abs(a)")
 get_partial_statevector(qc, [1,2,3,4], "scratch")
 get_partial_statevector(qc, [0,3,4], "a")
 get_partial_statevector(qc, [0,1,2], "b")
@@ -61,7 +61,7 @@ qc.cx(a[1], scratch)
 qc.barrier()
 
 # Verify statevector
-print("After Uncompute abs(a)")
+print("Statevector after Uncompute abs(a)")
 get_partial_statevector(qc, [1,2,3,4], "scratch")
 get_partial_statevector(qc, [0,3,4], "a")
 get_partial_statevector(qc, [0,1,2], "b")
