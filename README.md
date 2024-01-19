@@ -48,8 +48,9 @@ black .
 
     To verify successful teleportation, Bob applies the gates, which Alice applied on `∣0⟩` to prepare her payload, to his retrieved qubit in reverse. If Bob's retrieved qubit matches that sent by Alice, the final measurement result after verification gates should always be `0` in a perfect quantum circuit.
 
-1. [Arithmetic](./arithmetic.py)
+1. [Arithmetic](arithmetic.py)
 
-    ![](./docs/_static/arithmetic.png)
+    ![](docs/_static/arithmetic.png)
 
-    Create two quantum registers and initialize them to $$a=\sqrt{0.5}|1⟩_{8}+\sqrt{0.5}|5⟩_{8}$$ and $$b=\sqrt{0.5}|1⟩_{4}+e^{\pi/4}\sqrt{0.5}|3⟩_{4}$$. Decrement register $a$ by 3. Then, increment register $b$ conditional on register $a<0$. Here, register $a$ is assumed to be in two’s-complement, where the highest-order bit indicates the sign. Finally, increment register $a$ by 3. 
+    Create two quantum registers and initialize them to `a=sqrt(0.5)|1⟩+sqrt(0.5)|5⟩` and `b=sqrt(0.5)|1⟩+45°sqrt(0.5)|3⟩`. Decrement register `a` by 3. Then, increment register `b` conditional on register `a<0`. Here, register `a` is assumed to be in two’s-complement, where the highest-order bit indicates the sign. Finally, increment register `a` by 3.
+
