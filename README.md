@@ -51,3 +51,5 @@ black .
 1. [Arithmetic](arithmetic.py)
 
     ![](docs/_static/arithmetic.png)
+
+    Create two quantum registers and initialize them to $a=\sqrt{0.5}|1⟩_{8}+\sqrt{0.5}|5⟩_{8}$ and $b=\sqrt{0.5}|1⟩_{4}+e^{\pi/4}\sqrt{0.5}|3⟩_{4}$. 
