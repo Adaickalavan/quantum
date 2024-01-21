@@ -17,6 +17,7 @@ x_list = [reg[x] for x in range(n_qubits) if x_bits & (1 << x)]
 # Create multi controlled-z gate
 mtcx = MCMT(gate="cz", num_ctrl_qubits=n_qubits - 1, num_target_qubits=1)
 
+
 # Create diffuser circuit
 def diffuser(n):
     qc = QuantumCircuit(n)
@@ -31,6 +32,7 @@ def diffuser(n):
     gate.name = "diffuser"
 
     return gate
+
 
 # Verify statevector
 print(f"Statevector after 0 amplitude amplification iteration")

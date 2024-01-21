@@ -2,7 +2,7 @@
 
 We present several quantum computing algorithms. Each file is a standalone example.
 
-First perform generic setup as follows.  
+First, perform generic setup as follows.  
 
 ```bash
 cd <path>/quantum
@@ -16,7 +16,7 @@ pip install matplotlib pylatexenc ipykernel
 
 Users are recommended to run each of this repository's code files inside the interactive window in VSCode.
 
-Alternatively, you may run the code inside JupyterLab. Follow the additional steps below to install and launch JupyterLab.
+Alternatively, users may run the code inside JupyterLab. Follow the additional steps below to install and launch JupyterLab.
 ```bash
 cd <path>/quantum
 pip install jupyterlab
@@ -66,4 +66,10 @@ black .
 
     ![](docs/_static/amplitude_amplification.png)
 
-    Amplitude amplification converts inaccessible phase differences inside a quantum processor into measurable magnitude differences. Amplitue amplification consists of iterative `flip` followed by `mirror` subroutines. Subroutine `flip` marks the desired state by a phase-flip. Subroutine `mirror` reflects each state about the average overall state. This results in the marked state having a larger read probability than nonmarked states. In Grover search algorithm, the `flip` and `measure` are known as the `oracle` and `diffuser`, respectively.
+    Amplitude amplification converts inaccessible phase differences inside a quantum processor into measurable magnitude differences. Amplitue amplification consists of iterative `flip` followed by `mirror` subroutines. Subroutine `flip` marks the desired state by a phase-flip. Subroutine `mirror` reflects each state about the average overall state. This results in the marked state having a larger read probability than nonmarked states. In Grover search algorithm, the `flip` and `mirror` are known as the `oracle` and `diffuser`, respectively.
+
+ 1. [Quantum Fourier Transform](quantum_fourier_transform.py)
+
+    ![](docs/_static/quantum_fourier_transform.png)
+
+    Use Quantum Fourier Transform to deduce the frequency encoded in the quantum states.
