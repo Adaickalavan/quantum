@@ -49,9 +49,9 @@ qc.barrier()
 
 # Verify statevector
 print("Statevector after b += abs(a)")
-get_partial_statevector(qc, [1,2,3,4], "scratch")
-get_partial_statevector(qc, [0,3,4], "a")
-get_partial_statevector(qc, [0,1,2], "b")
+get_partial_statevector(qc, [1, 2, 3, 4], "scratch")
+get_partial_statevector(qc, [0, 3, 4], "a")
+get_partial_statevector(qc, [0, 1, 2], "b")
 
 # uncompute abs(a)
 qc.cx(scratch, a[0])
@@ -62,9 +62,9 @@ qc.barrier()
 
 # Verify statevector
 print("Statevector after Uncompute abs(a)")
-get_partial_statevector(qc, [1,2,3,4], "scratch")
-get_partial_statevector(qc, [0,3,4], "a")
-get_partial_statevector(qc, [0,1,2], "b")
+get_partial_statevector(qc, [1, 2, 3, 4], "scratch")
+get_partial_statevector(qc, [0, 3, 4], "a")
+get_partial_statevector(qc, [0, 1, 2], "b")
 
 # Run circuit
 backend = BasicAer.get_backend("statevector_simulator")
