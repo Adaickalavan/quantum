@@ -66,4 +66,4 @@ black .
 
     ![](docs/_static/amplitude_amplification.png)
 
-    
+    Amplitude amplification converts inaccessible phase differences inside a quantum processor into measurable magnitude differences. Amplitue amplification consists of iterative `flip` followed by `mirror` subroutines. Subroutine `flip` marks the desired state by a phase-flip. Subroutine `mirror` reflects each state about the average overall state. This results in the marked state having a larger read probability than nonmarked states. In Grover search algorithm, the `flip` and `measure` are known as the `oracle` and `diffuser`, respectively.
