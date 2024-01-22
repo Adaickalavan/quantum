@@ -18,6 +18,8 @@ elif which_signal == "C":
     qc.rz(math.radians(45), signal[0])
     qc.rz(math.radians(90), signal[1])
     qc.rz(math.radians(180), signal[2])
+elif which_signal == "D":  # Square-wave signal
+    qc.rz(math.radians(180), signal[2])
 
 # Perform Quantum Fourier Transform
 qc.barrier()

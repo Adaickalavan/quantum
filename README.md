@@ -72,4 +72,4 @@ black .
 
     ![](docs/_static/quantum_fourier_transform.png)
 
-    Use Quantum Fourier Transform to deduce the frequency encoded in the quantum states.
+    Use Quantum Fourier Transform to deduce the frequencies present in a quantum register.
