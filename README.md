@@ -73,3 +73,11 @@ black .
     ![](docs/_static/quantum_fourier_transform.png)
 
     Use Quantum Fourier Transform to deduce the frequencies present in a quantum register.
+
+1. [Phase estimation](phase_estimation.py)
+
+    ![](docs/_static/phase_estimation.png)
+
+    Eigenstates and eigenphases correspond to the classical eigenvectors and eigenvalues, respectively.
+
+    If we send a superposition of eigenstates as an input to the phase estimation primitive, we’ll obtain a superposition of the associated eigenphases. The magnitude for each eigenphase in the output superposition will be precisely the magnitude that its eigenstate had in the input register.
