@@ -13,5 +13,12 @@ def get_partial_statevector(qc, qargs, label="\\psi"):
     partial_statevector = np.diagonal(partial_density_matrix)
 
     display(
-        array_to_latex(partial_statevector, prefix=f"{label} =", max_size=qc.num_qubits)
+        array_to_latex(
+            partial_statevector,
+            precision=3,
+            prefix=f"{label} =",
+            max_size=2**qc.num_qubits,
+        )
     )
+
+    return partial_statevector
