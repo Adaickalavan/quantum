@@ -21,7 +21,7 @@ elif which_eigenstate == "B":
 qc.h(eigenphase)
 qc.barrier()
 
-# Set up unitary quantum gate
+# Set up controlled unitary quantum gate
 qc.ch(eigenphase[0], eigenstate)
 qc.barrier()
 
