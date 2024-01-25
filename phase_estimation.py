@@ -8,8 +8,16 @@ eigenphase = QuantumRegister(4, name="eigenphase")
 eigenstate = QuantumRegister(1, name="eigenstate")
 qc = QuantumCircuit(eigenphase, eigenstate)
 
-# Set up eigenstate and initialize the output qubits to superposition state using Hadamard gate
-qc.ry(math.radians(-135), eigenstate)
+# Set up eigenstate 
+which_eigenstate = "B"  # Desired signal
+if which_eigenstate == "A":
+    # Eigenstate `sqrt(0.15)|0⟩-sqrt(0.85)|1⟩` of Hadamard gate with corresponding eigenphase 180°
+    qc.ry(math.radians(-135), eigenstate)
+elif which_eigenstate == "B":
+    # Eigenstate `sqrt(0.85)|0⟩+sqrt(0.15)|1⟩` of Hadamard gate with corresponding eigenphase 0°
+    qc.ry(math.radians(45), eigenstate)
+
+# Initialize the output qubits to superposition state using Hadamard gate
 qc.h(eigenphase)
 qc.barrier()
 

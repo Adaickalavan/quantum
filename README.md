@@ -78,6 +78,8 @@ black .
 
     ![](docs/_static/phase_estimation.png)
 
-    Eigenstates and eigenphases correspond to the classical eigenvectors and eigenvalues, respectively.
+    Eigenstates and eigenphases correspond to the classical eigenvectors and eigenvalues, respectively.<br>
 
-    If we send a superposition of eigenstates as an input to the phase estimation primitive, we’ll obtain a superposition of the associated eigenphases. The magnitude for each eigenphase in the output superposition will be precisely the magnitude that its eigenstate had in the input register.
+    Here, we build a phase estimation circuit to compute the eigenphase, given a unitary quantum operation and its eigenstate.<br>
+
+    A superposition of eigenstates as an input to the phase estimation primitive results in a superposition of the associated eigenphases in the output. The magnitude for each eigenphase in the output superposition will be precisely the magnitude that its corresponding eigenstate had in the input register.
