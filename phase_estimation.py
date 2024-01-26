@@ -4,12 +4,12 @@ from qiskit.circuit.library import QFT
 from util.statevector import get_partial_statevector
 
 # Set up quantum registers
-eigenphase = QuantumRegister(4, name="eigenphase")
+eigenphase = QuantumRegister(3, name="eigenphase")
 eigenstate = QuantumRegister(1, name="eigenstate")
 qc = QuantumCircuit(eigenphase, eigenstate)
 
-# Set up eigenstate 
-which_eigenstate = "B"  # Desired signal
+# Set up eigenstate
+which_eigenstate = "A"  # Desired signal
 if which_eigenstate == "A":
     # Eigenstate `sqrt(0.15)|0⟩-sqrt(0.85)|1⟩` of Hadamard gate with corresponding eigenphase 180°
     qc.ry(math.radians(-135), eigenstate)
@@ -35,7 +35,7 @@ backend = BasicAer.get_backend("statevector_simulator")
 job = execute(qc, backend)
 result = job.result()
 
-outputstate = get_partial_statevector(qc, qargs=[4], label="eigenphase")
+outputstate = get_partial_statevector(qc, qargs=[qc.num_qubits - 1], label="eigenphase")
 for i, amp in enumerate(outputstate):
     if abs(amp) > 0.000001:
         prob = abs(amp) * abs(amp)
