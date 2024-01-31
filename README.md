@@ -78,8 +78,6 @@ black .
 
     ![](docs/_static/phase_estimation.png)
 
-    Eigenstates and eigenphases correspond to the classical eigenvectors and eigenvalues, respectively.<br>
-
-    We build a phase estimation circuit to compute the eigenphase, given a unitary quantum operation `U` and its eigenstate. Acting an `U` on its eigenstate produces the same eigenstate but with the eigenphase applied to its global phase. These eigenphase rotations are kicked-back into the top eigenphase register, creating a frequency modulation. Inverse QFT is applied to decode the frequency present in the top register, and thus find the underlying eigenphase. Relationship between eigenphase `θ`, top eigenphase register value `R`, and size of eigenphase register `m`, is `θ = R * 360° / 2^m`.<br>
+    We build a phase estimation circuit to compute the eigenphase $\theta$, given a unitary quantum operation $U$ and its eigenstate. Acting an $U$ on its eigenstate produces the same eigenstate but with the eigenphase applied to its global phase. That is to say $U|\psi⟩=e^{i2\pi\theta}|\psi⟩$. These eigenphase rotations are kicked-back into the $m$ qubits in the counting register, creating a frequency modulation. Inverse QFT is applied to the counting register to decode the frequency present and to obtain its count $v$. Then, $\theta = v2\pi / 2^m$.<br>
 
     A superposition of eigenstates as an input to the phase estimation primitive results in a superposition of the associated eigenphases in the output. The magnitude for each eigenphase in the output superposition will be precisely the magnitude that its corresponding eigenstate had in the input register.

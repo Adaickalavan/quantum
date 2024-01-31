@@ -1,33 +1,73 @@
 import math
+import numpy as np
 from qiskit import QuantumCircuit, QuantumRegister, execute, BasicAer
 from qiskit.circuit.library import QFT
 from util.statevector import get_partial_statevector
+from qiskit.circuit.library.standard_gates import HGate, TGate
+from qiskit.circuit import Gate
 
-# Set up quantum registers
-eigenphase = QuantumRegister(3, name="eigenphase")
-eigenstate = QuantumRegister(1, name="eigenstate")
-qc = QuantumCircuit(eigenphase, eigenstate)
+
+def phase_to_frequency(
+    qc_count: QuantumCircuit, qc_state: QuantumCircuit, unitary: Gate
+) -> QuantumCircuit:
+    count_length = qc_count.num_qubits
+    state_length = qc_state.num_qubits
+    controlled_unitary = unitary.control()
+    qc = QuantumCircuit(
+        QuantumRegister(count_length, name="count"),
+        QuantumRegister(state_length, name="state"),
+    )
+    qc.compose(
+        qc_state, [*range(count_length, count_length + state_length)], inplace=True
+    )
+    qc.barrier()
+    qc.compose(qc_count, [*range(count_length)], inplace=True)
+    qc.barrier()
+
+    # Perform U^k operations, where k is repetitions.
+    repetitions = 1
+    state_qubits = [*range(count_length, count_length + state_length)]
+    for i in range(count_length):
+        for _ in range(repetitions):
+            qc.append(controlled_unitary, [i] + state_qubits)
+        repetitions *= 2
+
+    return qc
+
 
 # Set up eigenstate
 which_eigenstate = "A"  # Desired signal
 if which_eigenstate == "A":
-    # Eigenstate `sqrt(0.15)|0⟩-sqrt(0.85)|1⟩` of Hadamard gate with corresponding eigenphase 180°
-    qc.ry(math.radians(-135), eigenstate)
+    # Eigenstate `sqrt(0.15)|0⟩-sqrt(0.85)|1⟩` of Hadamard gate with eigenphase 180°
+    qc_state = QuantumCircuit(1, name="state")
+    qc_state.ry(math.radians(-135), 0)
+    unitary = HGate()
 elif which_eigenstate == "B":
-    # Eigenstate `sqrt(0.85)|0⟩+sqrt(0.15)|1⟩` of Hadamard gate with corresponding eigenphase 0°
-    qc.ry(math.radians(45), eigenstate)
+    # Eigenstate `sqrt(0.85)|0⟩+sqrt(0.15)|1⟩` of Hadamard gate with eigenphase 0°
+    qc_state = QuantumCircuit(1, name="state")
+    qc_state.ry(math.radians(45), 0)
+    unitary = HGate()
+elif which_eigenstate == "C":
+    # Eigenstate `sqrt(0)|0⟩+sqrt(1)|1⟩` of T gate with eigenphase 45°
+    qc_state = QuantumCircuit(1, name="state")
+    qc_state.x(0)
+    unitary = TGate()
+else:
+    raise KeyError("Unkown eigenstate.")
 
-# Initialize the output qubits to superposition state using Hadamard gate
-qc.h(eigenphase)
-qc.barrier()
+# Set up counting register and apply Hadamard gates to the counting qubits
+count_length = 3
+qc_count = QuantumCircuit(count_length, name="count")
+qc_count.h([*range(0, count_length)])
 
-# Set up controlled unitary quantum gate
-qc.ch(eigenphase[0], eigenstate)
+# Apply controlled unitary operations to kickback eigenphase of `U|Ψ⟩` to counting qubits.
+qc = phase_to_frequency(qc_count=qc_count, qc_state=qc_state, unitary=unitary)
 qc.barrier()
+qc.draw()
 
 # Perform Inverse Quantum Fourier Transform
-qft_inv = QFT(num_qubits=len(eigenphase), inverse=True).to_gate(label="IQFT")
-qc.append(qft_inv, qargs=range(len(eigenphase)))
+qft_inv = QFT(num_qubits=count_length, inverse=True).to_gate(label="IQFT")
+qc.append(qft_inv, qargs=range(count_length))
 qc.barrier()
 
 # Run circuit
@@ -35,7 +75,16 @@ backend = BasicAer.get_backend("statevector_simulator")
 job = execute(qc, backend)
 result = job.result()
 
-outputstate = get_partial_statevector(qc, qargs=[qc.num_qubits - 1], label="eigenphase")
+# Output statevector
+outputstate = get_partial_statevector(
+    qc, qargs=[*range(count_length, qc.num_qubits)], label="count\_register"
+)
+binarystate = np.array([1 if abs(i)>0.1 else 0 for i in outputstate])
+decimalstate = binarystate.dot(1 << np.arange(binarystate.shape[-1]))
+eigenphase = decimalstate * 360 / 2**count_length
+print("eigenphase=", eigenphase)
+
+# Output state probabilities
 for i, amp in enumerate(outputstate):
     if abs(amp) > 0.000001:
         prob = abs(amp) * abs(amp)
