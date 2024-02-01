@@ -36,7 +36,7 @@ def phase_to_frequency(
 
 
 # Set up eigenstate
-which_eigenstate = "A"  # Desired signal
+which_eigenstate = "C"  # Desired signal
 if which_eigenstate == "A":
     # Eigenstate `sqrt(0.15)|0⟩-sqrt(0.85)|1⟩` of Hadamard gate with eigenphase 180°
     qc_state = QuantumCircuit(1, name="state")
@@ -79,12 +79,12 @@ result = job.result()
 outputstate = get_partial_statevector(
     qc, qargs=[*range(count_length, qc.num_qubits)], label="count\_register"
 )
-binarystate = np.array([1 if abs(i)>0.1 else 0 for i in outputstate])
-decimalstate = binarystate.dot(1 << np.arange(binarystate.shape[-1]))
-eigenphase = decimalstate * 360 / 2**count_length
-print("eigenphase=", eigenphase)
+count_value = int(np.argmax(outputstate))
+eigenphase = count_value * 360 / 2**count_length
+print(f"eigenphase = {eigenphase}\n")
 
 # Output state probabilities
+print("Output state probabilities")
 for i, amp in enumerate(outputstate):
     if abs(amp) > 0.000001:
         prob = abs(amp) * abs(amp)

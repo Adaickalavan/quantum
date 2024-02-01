@@ -68,7 +68,7 @@ black .
 
     Amplitude amplification converts inaccessible phase differences inside a quantum processor into measurable magnitude differences. Amplitue amplification consists of iterative `flip` followed by `mirror` subroutines. Subroutine `flip` marks the desired state by a phase-flip. Subroutine `mirror` reflects each state about the average overall state. This results in the marked state having a larger read probability than nonmarked states. In Grover search algorithm, the `flip` and `mirror` are known as the `oracle` and `diffuser`, respectively.
 
- 1. [Quantum Fourier Transform](quantum_fourier_transform.py)
+1. [Quantum Fourier Transform](quantum_fourier_transform.py)
 
     ![](docs/_static/quantum_fourier_transform.png)
 
@@ -76,8 +76,8 @@ black .
 
 1. [Phase estimation](phase_estimation.py)
 
-    ![](docs/_static/phase_estimation.png)
+    <img src="docs/_static/phase_estimation.png">
 
-    We build a phase estimation circuit to compute the eigenphase $\theta$, given a unitary quantum operation $U$ and its eigenstate. Acting an $U$ on its eigenstate produces the same eigenstate but with the eigenphase applied to its global phase. That is to say $U|\psi⟩=e^{i2\pi\theta}|\psi⟩$. These eigenphase rotations are kicked-back into the $m$ qubits in the counting register, creating a frequency modulation. Inverse QFT is applied to the counting register to decode the frequency present and to obtain its count $v$. Then, $\theta = v2\pi / 2^m$.<br>
+    We build a phase estimation circuit to compute the eigenphase $\theta$, given a unitary quantum operation $U$ and its eigenstate. Acting an $U$ on its eigenstate produces the same eigenstate but with the eigenphase applied to its global phase. That is to say $U|\psi⟩=e^{i2\pi\theta}|\psi⟩$. These eigenphase rotations are kicked-back into the $m$ qubits in the counting register, creating a frequency modulation. Inverse QFT is applied to the counting register to decode the frequency present and to obtain its count value $v$. Then, $\theta = v2\pi / 2^m$.<br>
 
-    A superposition of eigenstates as an input to the phase estimation primitive results in a superposition of the associated eigenphases in the output. The magnitude for each eigenphase in the output superposition will be precisely the magnitude that its corresponding eigenstate had in the input register.
+    A superposition of eigenstates as an input to the phase estimation results in a superposition of the associated eigenphases in the output. The magnitude for each eigenphase in the output superposition will be precisely the magnitude that its corresponding eigenstate had in the input register.
