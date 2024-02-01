@@ -36,11 +36,11 @@ black .
 
 1. <a href="quantum/blob/main/swap_test.py">Swap test</a>
 
-    ![swap test](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/swap_test.png)
+    ![swap test](quantum/blob/main/docs/_static/swap_test.png)
 
     Compare the states of two single-qubit registers. If the two input states are equal, the output register results in `∣1⟩` state. An useful interpretation is to see that the probability of a `|1⟩` outcome is a measure of just how identical the two inputs are.
 
-1. [Teleport](teleport.py)
+1. [Teleport](quantum/blob/main/teleport.py)
 
     ![teleport](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/teleport.png)
 
