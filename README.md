@@ -34,7 +34,7 @@ black .
 
 ## Code
 
-1. <a href="./swap_test.py">Swap test</a>
+1. <a href="quantum/blob/main/swap_test.py">Swap test</a>
 
     ![swap test](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/swap_test.png)
 
