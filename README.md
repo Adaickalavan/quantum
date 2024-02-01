@@ -34,7 +34,7 @@ black .
 
 ## Code
 
-1. [Swap test](swap_test.py)
+1. <a href="./swap_test.py">Swap test</a>
 
     ![swap test](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/swap_test.png)
 
@@ -75,7 +75,7 @@ black .
     Use Quantum Fourier Transform to deduce the frequencies present in a quantum register.
 
 1. [Phase estimation](phase_estimation.py)
-    
+
     ![phase estimation](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/phase_estimation.png)
 
     We build a phase estimation circuit to compute the eigenphase $\theta$, given a unitary quantum operation $U$ and its eigenstate. Acting an $U$ on its eigenstate produces the same eigenstate but with the eigenphase applied to its global phase. That is to say $U|\psi⟩=e^{i2\pi\theta}|\psi⟩$. These eigenphase rotations are kicked-back into the $m$ qubits in the counting register, creating a frequency modulation. Inverse QFT is applied to the counting register to decode the frequency present and to obtain its count value $v$. Then, $\theta = v2\pi / 2^m$.<br>
