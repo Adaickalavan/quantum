@@ -36,13 +36,13 @@ black .
 
 1. [Swap test](swap_test.py)
 
-    ![swap test](quantum/docs/_static/swap_test.png)
+    ![swap test](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/swap_test.png)
 
     Compare the states of two single-qubit registers. If the two input states are equal, the output register results in `∣1⟩` state. An useful interpretation is to see that the probability of a `|1⟩` outcome is a measure of just how identical the two inputs are.
 
 1. [Teleport](teleport.py)
 
-    ![teleport](quantum/docs/_static/teleport.png)
+    ![teleport](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/teleport.png)
 
     Alice teleports the quantum state of her payload qubit using an entangled pair of qubits shared with Bob. Only two classical bits are needed to transmit Alice’s qubit state (i.e., magnitudes and relative phase) and Bob's retrieved qubit state will be correct to a potentially infinite number of classical bits of precision. Because a traditional channel is needed to convey the two classical bits from Alice to Bob, the speed of teleportation can be no faster than the speed of light. <br>
 
@@ -50,13 +50,13 @@ black .
 
 1. [Arithmetic](arithmetic.py)
 
-    ![arithmetic](quantum/docs/_static/arithmetic.png)
+    ![arithmetic](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/arithmetic.png)
 
-    Create two quantum registers and initialize them to `a=sqrt(0.5)|1⟩+sqrt(0.5)|5⟩` and `b=sqrt(0.5)|1⟩+45°sqrt(0.5)|3⟩`. Decrement register `a` by 3. Then, increment register `b` conditional on register `a<0`. Here, register `a` is assumed to be in two’s-complement, where the highest-order bit indicates the sign. Finally, increment register `a` by 3.
+    Create two quantum registers and initialize them to $a=\sqrt{0.5}|1⟩+\sqrt{0.5}|5⟩$ and $b=\sqrt{0.5}|1⟩+e^{i\pi/4}\sqrt{0.5}|3⟩$. Decrement register $a$ by 3. Then, increment register $b$ conditional on register $a<0$. Here, register $a$ is assumed to be in two’s-complement, where the highest-order bit indicates the sign. Finally, increment register $a$ by 3.
 
 1. [Scratch qubit](scratch_qubit.py)
 
-    ![scratch qubit](quantum/docs/_static/scratch_qubit.png)
+    ![scratch qubit](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/scratch_qubit.png)
 
     Scratch qubits play a temporary role in enabling quantum operations. A specific example of an otherwise irreversible operation that can be made reversible with a scratch qubit is `abs(a)`. The `abs()` function computes the absolute value of a signed integer. We assume two’s-complement notation here. <br>
 
@@ -64,19 +64,19 @@ black .
 
 1. [Amplitude amplification](amplitude_amplification.py)
 
-    ![amplitude amplification](quantum/docs/_static/amplitude_amplification.png)
+    ![amplitude amplification](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/amplitude_amplification.png)
 
     Amplitude amplification converts inaccessible phase differences inside a quantum processor into measurable magnitude differences. Amplitue amplification consists of iterative `flip` followed by `mirror` subroutines. Subroutine `flip` marks the desired state by a phase-flip. Subroutine `mirror` reflects each state about the average overall state. This results in the marked state having a larger read probability than nonmarked states. In Grover search algorithm, the `flip` and `mirror` are known as the `oracle` and `diffuser`, respectively.
 
 1. [Quantum Fourier Transform](quantum_fourier_transform.py)
 
-    ![QFT](quantum/docs/_static/quantum_fourier_transform.png)
+    ![QFT](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/quantum_fourier_transform.png)
 
     Use Quantum Fourier Transform to deduce the frequencies present in a quantum register.
 
 1. [Phase estimation](phase_estimation.py)
     
-    ![phase estimation](quantum/docs/_static/phase_estimation.png)
+    ![phase estimation](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/phase_estimation.png)
 
     We build a phase estimation circuit to compute the eigenphase $\theta$, given a unitary quantum operation $U$ and its eigenstate. Acting an $U$ on its eigenstate produces the same eigenstate but with the eigenphase applied to its global phase. That is to say $U|\psi⟩=e^{i2\pi\theta}|\psi⟩$. These eigenphase rotations are kicked-back into the $m$ qubits in the counting register, creating a frequency modulation. Inverse QFT is applied to the counting register to decode the frequency present and to obtain its count value $v$. Then, $\theta = v2\pi / 2^m$.<br>
 
