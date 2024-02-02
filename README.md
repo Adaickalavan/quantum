@@ -81,3 +81,11 @@ black .
     We build a phase estimation circuit to compute the eigenphase $\theta$, given a unitary quantum operation $U$ and its eigenstate. Acting an $U$ on its eigenstate produces the same eigenstate but with the eigenphase applied to its global phase. That is to say $U|\psi⟩=e^{i2\pi\theta}|\psi⟩$. These eigenphase rotations are kicked-back into the $m$ qubits in the counting register, creating a frequency modulation. Inverse QFT is applied to the counting register to decode the frequency present and to obtain its count value $v$. Then, $\theta = v2\pi / 2^m$.<br>
 
     A superposition of eigenstates as an input to the phase estimation results in a superposition of the associated eigenphases in the output. The magnitude for each eigenphase in the output superposition will be precisely the magnitude that its corresponding eigenstate had in the input register.
+
+1. [Phase logic](quantum/blob/main/phase_logic.py)
+
+    ![phase logic](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/phase_logic.png)
+
+    Phase-logic circuits flip the relative phases of all input states for which the circuit operation evaluate to true. Note that phase-logic circuits take in states such as $|1⟩$ or $|2⟩$, but not phase values, as inputs and output values are encoded in the relative phases.<br>
+    
+    Some phase-logic operations, such as XOR, use extra scratch qubits. These scratch qubits will not become entangled with the input register because the scratch qubits implement phase-logic gates using the phase-kickback trick.
