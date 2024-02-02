@@ -62,7 +62,7 @@ black .
 
     In this example, `abs` of a quantum register `a` is computed. Then, add `abs(a)` to another quantum register `b`. Finally, uncompute (i.e., reverse the operations on) the scratch qubit and quantum register `a` to return them to their initial states.
 
-1. [Amplitude amplification](quantum/blob/main/amplitude_amplification.py)
+1. [Amplitude amplification](quantum/blob/main/amplitude_amplification.py) <a id="amplitude-amplification"></a>
 
     ![amplitude amplification](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/amplitude_amplification.png)
 
@@ -86,6 +86,17 @@ black .
 
     ![phase logic](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/phase_logic.png)
 
-    Phase-logic circuits flip the relative phases of all input states for which the circuit operation evaluate to true. Note that phase-logic circuits take in states such as $|1⟩$ or $|2⟩$, but not phase values, as inputs and output values are encoded in the relative phases.<br>
+    Phase-logic circuits flip the relative phases of all input states for which the circuit operation evaluate to true. Note that phase-logic circuits take in magnitude values such as $|1⟩$ or $|2⟩$, but not phase values, as inputs and encode output values in the relative phases.<br>
     
-    Some phase-logic operations, such as XOR, use extra scratch qubits. These scratch qubits will not become entangled with the input register because the scratch qubits implement phase-logic gates using the phase-kickback trick.
+    Here, we solve a satisfiable 3-SAT problem by finding the combination of boolean inputs `a`, `b`, `c` which  produce a 1 output from the boolean statement `(a OR b) AND ((NOT a) OR c) AND ((NOT b) OR (NOT c)) AND (a OR c)`.<br>
+
+    General recipe to solve satisfiability problems using phase logic is as follows. 
+    + Transform the boolean statement into a number of clauses that have to be satisfied simultaneously, such that the final statement is the `AND` of a number of independent clauses.
+    + Represent each individual clause using magnitude logic, storing the output in scratch qubits. 
+    + Initialize the quantum register in a uniform superposition.
+    + Build logic gates for each clause. 
+    + Perform a phase-logic `AND` between all the scratch qubits to combine the different clauses. 
+    + Uncompute all of the magnitude-logic operations, returning the scratch qubits to their initial states. 
+    + Finally, perform `mirror` subroutine (from the [amplitude amplification](#amplitude-amplification) algorithm). 
+    
+    Perform the phase `flip` (i.e., magnitude-logic and phase-logic) and `mirror` subroutines, as many times as necessary before reading out the quantum register.
