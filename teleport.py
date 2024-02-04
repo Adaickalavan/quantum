@@ -61,5 +61,5 @@ qc.draw(
     cregbundle=False,
     initial_state=True,
     fold=-1,
-    filename="./util/teleport.png",
+    filename="./docs/_static/teleport.png",
 )

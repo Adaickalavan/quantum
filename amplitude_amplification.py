@@ -79,5 +79,5 @@ qc.draw(
     cregbundle=False,
     initial_state=True,
     fold=-1,
-    filename="./util/amplitude_amplification.png",
+    filename="./docs/_static/amplitude_amplification.png",
 )

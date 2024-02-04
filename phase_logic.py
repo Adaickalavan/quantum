@@ -131,5 +131,5 @@ qc.decompose(gates_to_decompose=["OR", "or", "or_dg", "mcmt", "diffuser"], reps=
     cregbundle=False,
     initial_state=True,
     fold=-1,
-    filename="./util/phase_logic.png",
+    filename="./docs/_static/phase_logic.png",
 )

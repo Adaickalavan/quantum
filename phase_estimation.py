@@ -99,5 +99,5 @@ qc.decompose(gates_to_decompose="IQFT", reps=2).draw(
     cregbundle=False,
     initial_state=True,
     fold=-1,
-    filename="./util/phase_estimation.png",
+    filename="./docs/_static/phase_estimation.png",
 )

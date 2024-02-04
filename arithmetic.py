@@ -61,5 +61,5 @@ qc.draw(
     cregbundle=False,
     initial_state=True,
     fold=-1,
-    filename="./util/arithmetic.png",
+    filename="./docs/_static/arithmetic.png",
 )

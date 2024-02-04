@@ -46,5 +46,5 @@ qc.decompose(gates_to_decompose="QFT", reps=2).draw(
     cregbundle=False,
     initial_state=True,
     fold=-1,
-    filename="./util/quantum_fourier_transform.png",
+    filename="./docs/_static/quantum_fourier_transform.png",
 )
