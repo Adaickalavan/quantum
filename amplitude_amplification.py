@@ -3,6 +3,7 @@ from qiskit import BasicAer, QuantumCircuit, QuantumRegister, execute
 from qiskit.circuit.library import MCMT
 from qiskit.quantum_info import Statevector
 from qiskit.visualization import array_to_latex
+from qiskit.circuit.library.standard_gates import CZGate
 
 # Set up the program
 n_qubits = 4
@@ -15,8 +16,7 @@ x_bits = ~number_to_flip  # Perform bit flip. Here, `~x` is equivalent to `(-x) 
 x_list = [reg[x] for x in range(n_qubits) if x_bits & (1 << x)]
 
 # Create multi controlled-z gate
-mtcx = MCMT(gate="cz", num_ctrl_qubits=n_qubits - 1, num_target_qubits=1)
-
+mtcx = MCMT(gate=CZGate(), num_ctrl_qubits=n_qubits - 1, num_target_qubits=1)
 
 # Create diffuser circuit
 def diffuser(n):
@@ -78,5 +78,5 @@ qc.draw(
     cregbundle=False,
     initial_state=True,
     fold=-1,
-    filename="amplitude_amplification.png",
+    filename="./util/amplitude_amplification.png",
 )

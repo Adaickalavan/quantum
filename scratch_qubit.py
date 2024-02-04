@@ -87,5 +87,5 @@ qc.draw(
     cregbundle=False,
     initial_state=True,
     fold=-1,
-    filename="scratch_qubit.png",
+    filename="./util/scratch_qubit.png",
 )
