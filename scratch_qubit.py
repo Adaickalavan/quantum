@@ -1,7 +1,8 @@
-from qiskit import QuantumCircuit, QuantumRegister, execute, BasicAer
-from qiskit.visualization import array_to_latex
 from IPython.display import display
+from qiskit import BasicAer, QuantumCircuit, QuantumRegister, execute
 from qiskit.circuit.library import MCMT
+from qiskit.visualization import array_to_latex
+
 from util.statevector import get_partial_statevector
 
 # Set up

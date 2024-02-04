@@ -27,9 +27,9 @@ jupyter lab
 Optional libraries for code formatting.
 ```bash
 cd <path>/quantum
-pip install black[jupyter]
+pip install black[jupyter] isort
 # Execute to format code.
-black .
+make format
 ```
 
 ## Code

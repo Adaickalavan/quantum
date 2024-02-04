@@ -1,4 +1,4 @@
-from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, execute, BasicAer
+from qiskit import BasicAer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
 from qiskit.visualization import array_to_latex
 
 input1 = QuantumRegister(1, name="input1")

@@ -1,7 +1,8 @@
-from qiskit import QuantumCircuit, QuantumRegister, execute, BasicAer
 import math
-from qiskit.visualization import array_to_latex
+
 from IPython.display import display
+from qiskit import BasicAer, QuantumCircuit, QuantumRegister, execute
+from qiskit.visualization import array_to_latex
 
 # Set up
 a = QuantumRegister(3, name="a")

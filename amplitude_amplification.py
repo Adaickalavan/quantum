@@ -1,8 +1,8 @@
-from qiskit import QuantumCircuit, QuantumRegister, execute, BasicAer
-from qiskit.visualization import array_to_latex
 from IPython.display import display
+from qiskit import BasicAer, QuantumCircuit, QuantumRegister, execute
 from qiskit.circuit.library import MCMT
 from qiskit.quantum_info import Statevector
+from qiskit.visualization import array_to_latex
 
 # Set up the program
 n_qubits = 4

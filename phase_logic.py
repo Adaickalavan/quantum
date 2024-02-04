@@ -1,9 +1,8 @@
-from qiskit import QuantumCircuit, QuantumRegister, execute, BasicAer
-from qiskit.circuit.library import MCMT
-from util.statevector import get_partial_statevector
+from qiskit import BasicAer, QuantumCircuit, QuantumRegister, execute
+from qiskit.circuit.library import MCMT, OR
+from qiskit.circuit.library.standard_gates import CZGate
 
-# Create multi target controlled-x gate
-mt2cx = MCMT(gate="x", num_ctrl_qubits=1, num_target_qubits=2)
+from util.statevector import get_partial_statevector
 
 # Create diffuser circuit
 def diffuser(n):

@@ -1,6 +1,7 @@
-from qiskit import QuantumCircuit, QuantumRegister, execute, BasicAer
-from qiskit.circuit.library import QFT
 import math
+
+from qiskit import BasicAer, QuantumCircuit, QuantumRegister, execute
+from qiskit.circuit.library import QFT
 
 # Set up
 signal = QuantumRegister(4, name="signal")

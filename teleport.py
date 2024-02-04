@@ -1,7 +1,8 @@
 import math
-from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, execute, BasicAer
-from qiskit.visualization import array_to_latex
+
 from IPython.display import display
+from qiskit import BasicAer, ClassicalRegister, QuantumCircuit, QuantumRegister, execute
+from qiskit.visualization import array_to_latex
 
 alice = QuantumRegister(1, name="alice")
 ep = QuantumRegister(1, name="entangled_pair")

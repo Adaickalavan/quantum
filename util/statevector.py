@@ -1,7 +1,7 @@
 import numpy as np
+from IPython.display import display
 from qiskit.quantum_info import Statevector, partial_trace
 from qiskit.visualization import array_to_latex
-from IPython.display import display
 
 
 def get_partial_statevector(qc, qargs, label="\\psi"):
