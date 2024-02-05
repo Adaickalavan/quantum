@@ -99,3 +99,8 @@ make format
     + Finally, perform `mirror` subroutine, from the [amplitude amplification](#amplitude-amplification) algorithm.
 
     Perform the above phase `flip` (i.e., magnitude-logic and phase-logic operations) and `mirror` subroutines, as many times as necessary before reading out the quantum register.
+
+1. [Supersampling](quantum/blob/main/supersampling.py)
+
+    ![supersampling](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/supersampling.png)
+
