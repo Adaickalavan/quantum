@@ -99,3 +99,11 @@ make format
     + Finally, perform `mirror` subroutine, from the [amplitude amplification](#amplitude-amplification) algorithm.
 
     Perform the above phase `flip` (i.e., magnitude-logic and phase-logic operations) and `mirror` subroutines, as many times as necessary before reading out the quantum register.
+
+1. [Transpile](quantum/blob/main/transpile.py)
+
+    ![phase logic](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/transpile.png)
+
+    Quantum circuit must be transpiled for it to run on real devices. Qiskit's transpiler converts circuit operations to those supported by the device, maps qubits according to the device's coupling map, and performs some optimization of circuit’s gate count.
+
+    Here, we transpile a quantum circuit containing `[cx, y]` gates onto a `GenericBackendV2` device which only supports `[id, rz, sx, x, cx]` gates.
