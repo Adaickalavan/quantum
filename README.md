@@ -34,13 +34,13 @@ make format
 
 ## Code
 
-1. [Swap test](quantum/blob/main/swap_test.py)
+1. [Swap test](swap_test.py)
 
     ![swap test](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/swap_test.png)
 
     Compare the states of two single-qubit registers. If the two input states are equal, the output register results in $|1⟩$ state. An useful interpretation is to see that the probability of a $|1⟩$ outcome is a measure of just how identical the two inputs are.
 
-1. [Teleport](quantum/blob/main/teleport.py)
+1. [Teleport](teleport.py)
 
     ![teleport](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/teleport.png)
 
@@ -48,13 +48,13 @@ make format
 
     To verify successful teleportation, Bob applies the gates, which Alice applied on $|0⟩$ to prepare her payload, to his retrieved qubit in reverse. If Bob's retrieved qubit matches that sent by Alice, the final measurement result after verification gates should always be `0` in a perfect quantum circuit.
 
-1. [Arithmetic](quantum/blob/main/arithmetic.py)
+1. [Arithmetic](arithmetic.py)
 
     ![arithmetic](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/arithmetic.png)
 
     Create two quantum registers and initialize them to $a=\sqrt{0.5}|1⟩+\sqrt{0.5}|5⟩$ and $b=\sqrt{0.5}|1⟩+e^{i\pi/4}\sqrt{0.5}|3⟩$. Decrement register $a$ by 3. Then, increment register $b$ conditional on register $a<0$. Here, register $a$ is assumed to be in two’s-complement, where the highest-order bit indicates the sign. Finally, increment register $a$ by 3.
 
-1. [Scratch qubit](quantum/blob/main/scratch_qubit.py)
+1. [Scratch qubit](scratch_qubit.py)
 
     ![scratch qubit](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/scratch_qubit.png)
 
@@ -62,19 +62,19 @@ make format
 
     In this example, `abs` of a quantum register `a` is computed. Then, add `abs(a)` to another quantum register `b`. Finally, uncompute (i.e., reverse the operations on) the scratch qubit and quantum register `a` to return them to their initial states.
 
-1. [Amplitude amplification](quantum/blob/main/amplitude_amplification.py) <a id="amplitude-amplification"></a>
+1. [Amplitude amplification](amplitude_amplification.py) <a id="amplitude-amplification"></a>
 
     ![amplitude amplification](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/amplitude_amplification.png)
 
     Amplitude amplification converts inaccessible phase differences inside a quantum processor into measurable magnitude differences. Amplitue amplification consists of iterative `flip` followed by `mirror` subroutines. Subroutine `flip` marks the desired state by a phase-flip. Subroutine `mirror` reflects each state about the average overall state. This results in the marked state having a larger read probability than nonmarked states. In Grover search algorithm, the `flip` and `mirror` are known as the `oracle` and `diffuser`, respectively.
 
-1. [Quantum Fourier Transform](quantum/blob/main/quantum_fourier_transform.py)
+1. [Quantum Fourier Transform](quantum_fourier_transform.py)
 
     ![QFT](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/quantum_fourier_transform.png)
 
     Use Quantum Fourier Transform to deduce the frequencies present in a quantum register.
 
-1. [Phase estimation](quantum/blob/main/phase_estimation.py)
+1. [Phase estimation](phase_estimation.py)
 
     ![phase estimation](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/phase_estimation.png)
 
@@ -82,7 +82,7 @@ make format
 
     A superposition of eigenstates as an input to the phase estimation results in a superposition of the associated eigenphases in the output. The magnitude for each eigenphase in the output superposition will be precisely the magnitude that its corresponding eigenstate had in the input register.
 
-1. [Phase logic](quantum/blob/main/phase_logic.py)
+1. [Phase logic](phase_logic.py)
 
     ![phase logic](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/phase_logic.png)
 
@@ -100,7 +100,7 @@ make format
 
     Perform the above phase `flip` (i.e., magnitude-logic and phase-logic operations) and `mirror` subroutines, as many times as necessary before reading out the quantum register.
 
-1. [Transpile](quantum/blob/main/transpile.py)
+1. [Transpile](transpile.py)
 
     ![phase logic](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/transpile.png)
 
