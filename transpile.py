@@ -9,7 +9,7 @@ for t in range(2):
 print(qc.draw())
 
 backend = GenericBackendV2(num_qubits=3)
-t_qc = transpile(qc, backend)
+t_qc = transpile(qc, backend, optimization_level=1)
 
 # Draw the circuit
 t_qc.draw(

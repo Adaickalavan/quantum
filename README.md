@@ -102,8 +102,8 @@ make format
 
 1. [Transpile](transpile.py)
 
-    ![phase logic](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/transpile.png)
+    ![transpile](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/transpile.png)
 
     Quantum circuit must be transpiled for it to run on real devices. Qiskit's transpiler converts circuit operations to those supported by the device, maps qubits according to the device's coupling map, and performs some optimization of circuit’s gate count.
 
-    Here, we transpile a quantum circuit containing `[cx, y]` gates onto a `GenericBackendV2` device which only supports `[id, rz, sx, x, cx]` gates.
+    Here, we transpile a quantum circuit containing `[cx, y]` gates onto a `GenericBackendV2` device which only supports `[id, rz, sx, x, cx]` gates. We may select $optimization\_level \in [0,1,2,3]$ as input argument to the transpiler. Level 0 does the aboslute minimum necessary, level 1 is the default setting, level 2 tries to avoid qubit swaps, and level 3 is the highest which  uses smarter algorithms to cancel out gates.
