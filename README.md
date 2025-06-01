@@ -42,12 +42,20 @@ $ make format
 
     Explanation of the circuit is as follows. Circuit state at the beginning is $|\phi,\psi,0⟩$. After Hadamard gate, the circuit state is $\frac{1}{\sqrt 2}\left(|\phi,\psi,0⟩ + |\phi,\psi,1⟩\right)$. After the controlled SWAP gate, the circuit state becomes $\frac{1}{\sqrt 2}\left(|\phi,\psi,0⟩ + |\psi,\phi,1⟩\right)$. After second Hadamard gate, the circuit state becomes 
 
-    ```math
+    $$
+    \begin{alignat*}{4}
+    & sin⁡(α) &&= {opposite \over hypotenuse} &&= {h0 \over c} &&= {h2 \over b} \\
+    & cos(α) &&= {adjacent \over hypotenuse} &&= {b \over c}  &&= {d \over b} \\
+    & tan⁡(α) &&= {opposite \over adjacent}   &&= {h0 \over b} &&= {h2 \over d}
+    \end{alignat*}
+    $$
+
+    $$
     \begin{align*}
     & \frac{1}{2}\left(|\phi,\psi,0⟩ + |\phi,\psi,1⟩ + |\psi,\phi,0⟩ - |\psi,\phi,1⟩ \right) \\
     & = \frac{1}{2}|0⟩\left(|\phi,\psi⟩ + |\psi,\phi⟩\right) + \frac{1}{2}|1⟩\left(|\phi,\psi⟩ - |\psi,\phi⟩ \right) \\
     \end{align*}
-    ```
+    $$
 
     After the $x$ gate, the circuit state becomes $\frac{1}{2}|0⟩\left(|\phi,\psi⟩ - |\psi,\phi⟩ \right) + \frac{1}{2}|1⟩\left(|\phi,\psi⟩ + |\psi,\phi⟩\right)$. The measurement gate outputs $|1⟩$ with a probability of
 
