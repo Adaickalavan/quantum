@@ -1,5 +1,7 @@
 # Quantum Computing
 
+See [website](https://adaickalavan.github.io/portfolio/quantum/) for more information.
+
 Here, we explore quantum computing and quantum error correction. Each file is a standalone example.
 
 ## Installation
