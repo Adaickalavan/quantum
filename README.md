@@ -1,10 +1,5 @@
 # Quantum Computing
 
-The following are several good books and courses on learning quantum computing. Feel free to suggest any other good resources in the comments section.
-1. [Dancing with Qubits](https://www.packtpub.com/en-us/product/dancing-with-qubits-9781837634620)
-1. [Programming Quantum Computers](https://www.oreilly.com/library/view/programming-quantum-computers/9781492039679/)
-1. [Hands-on quantum error correction with Google Quantum AI](https://www.coursera.org/learn/quantum-error-correction)
-
 Here, we present several quantum computing algorithms. Each file is a standalone example.
 
 First, perform generic setup as follows.  
@@ -44,6 +39,27 @@ make format
     ![swap test](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/swap_test.png)
 
     Compare the states of two single-qubit registers. If the two input states are equal, the output register results in $|1⟩$ state. An useful interpretation is to see that the probability of a $|1⟩$ outcome is a measure of just how identical the two inputs are.
+
+    Explanation of the circuit is as follows. Circuit state at the beginning is $\|\phi,\psi,0⟩$. After Hadamard gate, the circuit state is $\frac{1}{\sqrt 2}\left(\|\phi,\psi,0⟩ + \|\phi,\psi,1⟩\right)$. After the controlled SWAP gate, the circuit state becomes $\frac{1}{\sqrt 2}\left(\|\phi,\psi,0⟩ + \|\psi,\phi,1⟩\right)$. After second Hadamard gate, the circuit state becomes 
+
+    $$
+    \begin{align*}
+    & \frac{1}{2}\left(|\phi,\psi,0⟩ + |\phi,\psi,1⟩ + |\psi,\phi,0⟩ - |\psi,\phi,1⟩ \right) \\
+    & = \frac{1}{2}|0⟩\left(|\phi,\psi⟩ + |\psi,\phi⟩\right) + \frac{1}{2}|1⟩\left(|\phi,\psi⟩ - |\psi,\phi⟩ \right) \\
+    \end{align*}
+    $$
+
+    After the $x$ gate, the circuit state becomes $\frac{1}{2}\|0⟩\left(\|\phi,\psi⟩ - \|\psi,\phi⟩ \right) + \frac{1}{2}\|1⟩\left(\|\phi,\psi⟩ + \|\psi,\phi⟩\right)$. The measurement gate outputs $\|1⟩$ with a probability of
+
+    $$
+    \begin{align*}
+    & \left|\frac{1}{2}\left(|\phi,\psi⟩ + |\psi,\phi⟩\right)\right|^2 \\
+    & = \frac{1}{2}\left(⟨\phi|⟨\psi| + ⟨\psi|⟨\phi|\right)\frac{1}{2}\left(|\phi⟩|\psi⟩ + |\psi⟩|\phi⟩\right) \\
+    & = \frac{1}{2} + \frac{1}{2}|⟨\phi|\psi⟩|^2 \\
+    \end{align*}
+    $$
+
+    Here, $\|⟨\phi\|\psi⟩\|^2 = 1$ if the qubits are identical, else $\|⟨\phi\|\psi⟩\|^2 = 0$ if they are orthogonal.
 
 1. [Teleport](teleport.py)
 
