@@ -1,6 +1,11 @@
 # Quantum Computing
 
-We present several quantum computing algorithms. Each file is a standalone example.
+The following are several good books and courses on learning quantum computing. Feel free to suggest any other good resources in the comments section.
+1. [Dancing with Qubits](https://www.packtpub.com/en-us/product/dancing-with-qubits-9781837634620)
+1. [Programming Quantum Computers](https://www.oreilly.com/library/view/programming-quantum-computers/9781492039679/)
+1. [Hands-on quantum error correction with Google Quantum AI](https://www.coursera.org/learn/quantum-error-correction)
+
+Here, we present several quantum computing algorithms. Each file is a standalone example.
 
 First, perform generic setup as follows.  
 
