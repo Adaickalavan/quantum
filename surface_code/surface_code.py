@@ -213,7 +213,7 @@ def rounds_step(distance, rounds, p):
     """
     stim_string += stabilizers_with_noise(distance, p)
     stim_string += f"""
-    SHIFT_COORDS(0,0,1)
+    SHIFT_COORDS(0, 0, 1)
     """
     
     nmpt = len(z_measures) # num_measures_per_type
@@ -240,8 +240,61 @@ def final_step(distance, p):
     #  measurements and the final data measurements. Add the last round
     #  detectors, the final data measure detectors, and the 
     #  `OBSERVABLE_INCLUDE` instruction. 
-    stim_string = f""
-    return NotImplemented
+    
+    stim_string = f"""
+    R {index_string(all_measures, c2i)}
+    X_ERROR({p}) {index_string(all_measures, c2i)}
+    DEPOLARIZE1({p}) {index_string(datas, c2i)}
+    TICK
+    H {index_string(x_measures, c2i)}
+    DEPOLARIZE1({p}) {index_string(all_qubits, c2i)}
+    TICK
+    """
+
+    stim_string += lattice_with_noise(distance, p)
+
+    stim_string += f"""
+    H {index_string(x_measures, c2i)}
+    DEPOLARIZE1({p}) {index_string(all_qubits, c2i)}
+    TICK
+    X_ERROR({p}) {index_string(all_qubits, c2i)}
+    M {index_string(all_qubits, c2i)}
+    SHIFT_COORDS(0, 0, 1)
+    """
+
+    nmpt = len(z_measures) # num_measures_per_type
+    nd = len(datas) # num of datas
+    for i in range(1, len(z_measures)+1):
+        stim_string += f"""
+        DETECTOR({z_measures[-i][0]},{z_measures[-i][1]}, 0) rec[{-i}] rec[{-(i+2*nmpt+nd)}]
+        """  
+    for i in range(1, len(x_measures)+1):
+        stim_string += f"""
+        DETECTOR({x_measures[-i][0]},{x_measures[-i][1]}, 0) rec[{-(i+nmpt)}] rec[{-(i+3*nmpt+nd)}]
+        """
+
+    # create a dict that maps each coord to the record index of the most recent measurement on it
+    coord_to_record_index = {coord: i-len(all_qubits) for i, coord in enumerate(all_qubits)}
+
+    for i, measure in enumerate(z_measures):
+        record_indices = []
+        record_indices.append(coord_to_record_index[measure])
+        adjacent_datas = adjacent_coords(measure)
+        
+        coord = None
+        for data in adjacent_datas:
+            if data in all_qubits:
+                record_indices.append(coord_to_record_index[data])
+                if not coord:
+                    coord = data
+
+        recs = [f"rec[{j}]" for j in record_indices]
+        stim_string += f"DETECTOR({coord[0]}, {coord[1]}, 0) {' '.join(recs)}\n"
+    
+    obs_recs = [f"rec[{-(i+2*nmpt)}]" for i in range(1, distance+1)]
+    stim_string += f"OBSERVABLE_INCLUDE(0) {' '.join(obs_recs)}"
+
+    return stim_string
 
 def surface_code_circuit_string(distance, rounds, p):
     string = coord_circuit(distance)

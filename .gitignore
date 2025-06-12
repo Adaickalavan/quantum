@@ -1,2 +1,5 @@
+dont_look/
+getting_started.ipynb
+.ipynb_checkpoints
 __pycache__
 .venv
