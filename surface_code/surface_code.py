@@ -195,7 +195,7 @@ def initialization_step(distance, p):
 
     for i in range(1, len(z_measures)+1):
         stim_string += f"""
-        DETECTOR({i}, 0) rec[{-i}]
+        DETECTOR({z_measures[-i][0]}, {z_measures[-i][1]}, 0) rec[{-i}]
         """
 
     return stim_string
@@ -207,8 +207,30 @@ def rounds_step(distance, rounds, p):
     datas, x_measures, z_measures, c2i = prepare_coords(distance)
     # Use `stabilizers_with_noise` to implement the `REPEAT` block of
     #  stabilizers. Include the mid-round detectors.
-    stim_string = f""
-    return NotImplemented
+
+    stim_string = f"""
+    REPEAT {rounds-2} {{
+    """
+    stim_string += stabilizers_with_noise(distance, p)
+    stim_string += f"""
+    SHIFT_COORDS(0,0,1)
+    """
+    
+    nmpt = len(z_measures) # num_measures_per_type
+    for i in range(1, len(z_measures)+1):
+        stim_string += f"""
+        DETECTOR({z_measures[-i][0]},{z_measures[-i][1]}, 0) rec[{-i}] rec[{-(i+2*nmpt)}]
+        """  
+    for i in range(1, len(x_measures)+1):
+        stim_string += f"""
+        DETECTOR({x_measures[-i][0]},{x_measures[-i][1]}, 0) rec[{-(i+nmpt)}] rec[{-(i+3*nmpt)}]
+        """
+    
+    stim_string += """
+    }
+    """
+
+    return stim_string
     
 def final_step(distance, p):
     datas, x_measures, z_measures, c2i = prepare_coords(distance)
