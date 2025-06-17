@@ -110,8 +110,8 @@ $ make format
 
     Here, we transpile a quantum circuit containing `[cx, y]` gates onto a `GenericBackendV2` device which only supports `[id, rz, sx, x, cx]` gates. Circuit before (left) and after (right) transpiling is shown above. We may select `optimization_level`$\in [0,1,2,3]$ as input argument to the transpiler. Level 0 does the aboslute minimum necessary, level 1 is the default setting, level 2 tries to avoid qubit swaps, and level 3 is the highest which  uses smarter algorithms to cancel out gates.
 
-1. [SurfaceCode](surface_code/Surface%20code%20in%20Stim.ipynb)
+1. [Surface Code](surface_code/Surface%20code%20in%20Stim.ipynb)
 
     ![surfacecode](https://github.com/Adaickalavan/quantum/blob/main/docs/_static/surface_code_circuit_timeline.png)
 
-    Above is a surface code for distance=3, rounds=2, and p_error = 0.01, built in [Hands-on quantum error correction with Google Quantum AI](https://www.coursera.org/learn/quantum-error-correction).
+    Above is a surface code circuit timeline for distance=3, rounds=2, and error_probability = 0.01. This was built as part of [Hands-on quantum error correction with Google Quantum AI](https://www.coursera.org/learn/quantum-error-correction) course.
